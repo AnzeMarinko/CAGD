@@ -34,7 +34,7 @@ if (r > 0)
         plot3(d(:,1),d(:,2),d(:,3),'r:.')
     end
 else
-    plotbezier(B, t)
+    plotbezier(B, t, true)
 end
 
 end

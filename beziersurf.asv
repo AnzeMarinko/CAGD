@@ -1,0 +1,22 @@
+function bs = beziersurf( B )
+%beziersurf izriše Bezierjevo ploskev in kontrolno mrežo za dane toèe B
+%   B ... 3-slojna matrika, kjer so B(i,j,:) (x,y,z)-koordinate (i,j)-te
+%   kontrolne toèke
+
+Bx = B(:,:,1);
+By = B(:,:,2);
+Bz = B(:,:,3);
+u = linspace(0,1,50);
+v = linspace(0,1,50);
+[bx, by, bz] = bezier2(Bx,By,Bz,u,v);
+
+mesh(Bx,By,Bz,'AlphaData',gradient(Bz),...
+    'EdgeColor','black',...
+    'EdgeAlpha',0.9,...
+    'FaceAlpha',0,...
+    'FaceColor','blue');
+shading faceted;
+hold on;
+surf(bx,by,bz,'AlphaData',zeros(size(Bz,2)-1,size(Bz,1)),'EdgeAlpha','flat');
+end
+

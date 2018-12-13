@@ -36,7 +36,7 @@ for ui = 1:length(u)
                 dB(i) = x(1,n+1);
             end
             x = decasteljau(dB, u(ui));
-            b(ui,vj,j) = x(1,m+1);
+            b(vj,ui,j) = x(1,m+1);
         end
     end
 end
