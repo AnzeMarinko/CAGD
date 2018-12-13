@@ -24,11 +24,18 @@ function [Be ,we] = rbezierelv (B,w)
 n = size(B,1) - 1;
 d = size(B,2);
 Be = zeros(n+1,d+1);
+we = zeros(n+2,1);
 
-for i = 1:d
-    Be(:,i) = [w.*B(:,i) w];
+for i = 1:n+1
+    Be(i,:) = [w(i)*B(i,:) w(i)];
 end
+Bew = bezierelv(Be,1);
 
+we = Bew(:,d+1);
+Be = zeros(n+2,d);
+for i = 1:n+2
+    Be(i,:) = Bew(i,1:d)/we(i);
+end
 
 end
 
